@@ -1,0 +1,156 @@
+package javaapplication_state_machain;
+
+/**
+ *
+ * @author Toshiba
+ */
+public class JavaApplication_State_machain {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+       sequence("ccaab");
+     //{(cca)^m :m E N+} U {c(ab)^n :n E N+}
+    }
+    
+   public static  boolean lang_1(String S)//function use to verify language one
+   {
+       
+       
+       
+       int state=1;
+    
+       int finalstate1=6;
+     
+       for(int i=0;i<S.length();i++){
+           char ch=S.charAt(i);
+           
+           
+        
+           
+         
+        switch(state){
+         
+   
+        
+       case 1 :
+          
+               
+                    if(ch=='c')state=2;
+       
+                  
+                    else  state=0;
+    
+         
+               break;
+               
+               case 2:
+                     if(ch=='c'){state=3;}
+                  
+                     else {state=0;}
+                   break;  
+               case 3:
+                   if(ch=='a'){state=4;}
+                   else{state=0;}
+                   break;
+               case 4:
+                   if(ch=='a'){state=5;}
+                   else if(ch=='c'){state=2;}
+                    else {state=0;}
+                   break;
+               case 5:
+                   if(ch=='b'){state=6;}
+                   else{state=0;}
+                   break;
+               
+               default : 
+                  state=0;
+                break;
+        }  
+               
+           }
+        
+       if(state == finalstate1) return true;
+       else return false;
+       
+       
+   }
+    
+   
+   public static boolean lang_2(String S)//function use to verify language 2
+   {
+    
+        
+       
+       int state=1;
+    
+      
+      int finalstate2=9;
+       for(int i=0;i<S.length();i++){
+           char ch=S.charAt(i);
+           
+     
+           
+         
+        switch(state){
+         
+   
+        
+       case 1 :
+          
+               
+                    if(ch=='c')state=7;
+       
+                  
+                    else  state=0;
+                          break;
+ 
+               case 7:
+                     if(ch=='a'){state=8;}
+                  
+                     else {state=0;}
+                   break; 
+
+ 
+               case 8:
+                   if(ch=='b'){state=9;}
+                   else{state=0;}
+                   break;
+
+
+               case 9:
+                   if(ch=='a'){state=8;}
+                   else {state=0;}
+                   break;
+               
+               default :
+                   state = 0;
+                   break;
+        }  
+               
+      }
+        
+       if(state == finalstate2) return true;
+       else return false;
+       
+   }
+   
+   
+
+   public static void sequence(String S)//function use to check sequence belongs to any one language or not 
+   {
+       
+       boolean result1 =  lang_1(S);//result1 take the answer of lang1 may be true or false
+       boolean result2 =  lang_2(S);//result2 take the answer of lang2 may be true or false
+        
+        if(result1 == true ||  result2== true)//if the given sequence is in  any of two languages or not
+            System.out.println("accepted");
+        else
+            
+           System.out.println("not accepted");
+        
+    
+   }
+}
